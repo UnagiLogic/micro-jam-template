@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Micro Jam Template</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        
+        .container {
+            text-align: center;
+        }
+        
+        #jamCanvas {
+            border: 2px solid #333;
+            background-color: white;
+            cursor: crosshair;
+        }
+        
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Micro Jam Template</h1>
+        <canvas id="jamCanvas" width="1000" height="1000"></canvas>
+    </div>
+    
+    <script src="module.js"></script>
+</body>
+</html>
