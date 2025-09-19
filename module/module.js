@@ -58,6 +58,7 @@ const MyModule = {
 // Initialize the module when the page loads
 document.addEventListener('DOMContentLoaded', function() {
     const canvas = document.getElementById('jamCanvas');
+    const splashScreen = document.getElementById('splash-screen');
     
     if (canvas) {
         // Setup the module
@@ -70,6 +71,16 @@ document.addEventListener('DOMContentLoaded', function() {
             const y = event.clientY - rect.top;
             MyModule.onClick(x, y);
         });
+
+         setTimeout(() => {
+            if (splashScreen) {
+                splashScreen.style.opacity = '0';
+                // After the fade-out transition, disable pointer events so it doesn't block the canvas
+                splashScreen.addEventListener('transitionend', () => {
+                    splashScreen.style.pointerEvents = 'none';
+                }, { once: true });
+            }
+        }, 3000);
         
         console.log('Canvas event listeners added');
     } else {
