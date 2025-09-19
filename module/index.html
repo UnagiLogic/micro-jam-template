@@ -18,6 +18,7 @@
         
         .container {
             text-align: center;
+            position: relative;
         }
         
         #jamCanvas {
@@ -30,12 +31,28 @@
             margin-bottom: 20px;
             color: #333;
         }
+
+        #splash-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1000px;
+            height: 1000px;
+            background-image: url('MicroJam.png');
+            background-size: cover;
+            z-index: 10;
+            opacity: 1;
+            /* This creates a smooth fade-out effect */
+            transition: opacity 0.5s ease-out;
+            /* Prevents the logo from blocking clicks after it's invisible */
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Micro Jam Template</h1>
         <canvas id="jamCanvas" width="1000" height="1000"></canvas>
+        <div id="splash-screen"></div>
     </div>
     
     <script src="module.js"></script>
