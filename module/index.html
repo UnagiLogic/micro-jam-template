@@ -12,17 +12,16 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background-color: #f0f0f0;
+            background-color: #2c2c2c;
             font-family: Arial, sans-serif;
         }
         
         .container {
             text-align: center;
-            position: relative;
         }
         
         #jamCanvas {
-            border: 2px solid #333;
+            border: 2px solid #555;
             background-color: white;
             cursor: crosshair;
         }
@@ -31,30 +30,44 @@
             margin-bottom: 20px;
             color: #333;
         }
-
-        #splash-screen {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 1000px;
-            height: 1000px;
-            background-image: url('MicroJam.png');
-            background-size: cover;
-            z-index: 10;
-            opacity: 1;
-            /* This creates a smooth fade-out effect */
-            transition: opacity 0.5s ease-out;
-            /* Prevents the logo from blocking clicks after it's invisible */
-        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Micro Jam Template</h1>
-        <canvas id="jamCanvas" width="1000" height="1000"></canvas>
-        <div id="splash-screen"></div>
+        <h1>Micro Jam Template (Test Page)</h1>
+        <canvas id="jamCanvas" width="800" height="800"></canvas>
     </div>
     
     <script src="module.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const canvas = document.getElementById('jamCanvas');
+            if (canvas && typeof MyModule !== 'undefined') {
+                MyModule.setup(canvas);
+                
+                canvas.addEventListener('click', function(event) {
+                    const rect = canvas.getBoundingClientRect();
+                    const x = event.clientX - rect.left;
+                    const y = event.clientY - rect.top;
+                    MyModule.onClick(x, y);
+                });
+                
+                // Start a simple draw loop for the test page
+                const context = canvas.getContext('2d');
+                function testLoop() {
+                    // Clear canvas (unlike the showcase, this test page won't)
+                    // context.clearRect(0, 0, canvas.width, canvas.height); 
+                    MyModule.draw(context);
+                    requestAnimationFrame(testLoop);
+                }
+                // Call draw once to start
+                testLoop(); 
+
+            } else {
+                console.error('Canvas or MyModule not found');
+            }
+        });
+    </script>
 </body>
 </html>
