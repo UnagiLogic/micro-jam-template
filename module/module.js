@@ -52,12 +52,28 @@ const MyModule = {
             this.context.arc(x, y, 20, 0, Math.PI * 2);
             this.context.fill();
         }
+    },
+
+    /**
+     * Button click handler - called when the action button is clicked
+     */
+    onButtonClick: function() {
+        console.log('Action button clicked!');
+
+        // Example: Clear the canvas and draw a message
+        if (this.context && this.canvas) {
+            this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            this.context.fillStyle = '#333';
+            this.context.font = '24px Arial';
+            this.context.textAlign = 'center';
+            this.context.fillText('Button was clicked!', this.canvas.width / 2, this.canvas.height / 2);
+        }
     }
 };
 
 // Initialize the module when the page loads
 document.addEventListener('DOMContentLoaded', function() {
-    const canvas = document.getElementById('jamCanvas');
+    const canvas = document.querySelectorAll('#jamCanvas')[1] || document.getElementById('jamCanvas');
     const splashScreen = document.getElementById('splash-screen');
     
     if (canvas) {
@@ -71,6 +87,29 @@ document.addEventListener('DOMContentLoaded', function() {
             const y = event.clientY - rect.top;
             MyModule.onClick(x, y);
         });
+
+        // --- Create and add the button programmatically ---
+        const container = canvas.parentElement;
+        if (container) {
+            // Create a div to hold the button
+            const controlsDiv = document.createElement('div');
+            controlsDiv.style.marginTop = '20px';
+            controlsDiv.style.textAlign = 'center';
+
+            // Create the button and image elements
+            const actionButton = document.createElement('button');
+            actionButton.id = 'actionButton';
+            const buttonImage = document.createElement('img');
+            buttonImage.src = 'MicroJamButton.png';
+            buttonImage.alt = 'Action Button';
+
+            // Assemble and append to the DOM
+            actionButton.appendChild(buttonImage);
+            controlsDiv.appendChild(actionButton);
+            container.parentElement.appendChild(controlsDiv);
+
+            actionButton.addEventListener('click', () => MyModule.onButtonClick());
+        }
 
          setTimeout(() => {
             if (splashScreen) {
