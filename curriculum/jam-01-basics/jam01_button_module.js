@@ -1,4 +1,9 @@
-// Micro Jam Template Module
+//------------------------------------------------------
+// MICRO JAM MODULE - TEMPLATE V1.0
+// JAM THEME: BUTTON!
+// ARCHIVE NAME: jam01_button_module.js
+//------------------------------------------------------
+
 // This is the main module where you'll implement your creative solution
 
 var MyModule = {
